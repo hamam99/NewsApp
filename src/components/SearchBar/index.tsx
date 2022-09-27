@@ -6,7 +6,7 @@ const SearchBar = () => {
   return (
     <Input
       placeholder="Dogecoin to the moon"
-      rightIcon={{type: 'font-awesome', name: 'chevron-left'}}
+      // rightIcon={{type: 'font-awesome', name: 'chevron-left'}}
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainer}
       containerStyle={styles.container}
