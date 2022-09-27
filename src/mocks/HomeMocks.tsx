@@ -56,7 +56,7 @@ export const TopHeadlineMocks: ResponseNews = {
   ],
 };
 
-export const ListNewsMock: ResponseNews = {
+const ListNewsMock: ResponseNews = {
   status: 'ok',
   totalResults: 2,
   articles: [
@@ -94,5 +94,24 @@ export const ListNewsMock: ResponseNews = {
       content:
         'LONDON (AP) U.S. President Joe Biden paid his respects at Queen Elizabeth IIs coffin on Sunday as thousands of police, hundreds of British troops and an army of officials made final preparations for … [+6809 chars]',
     },
+    {
+      source: {
+        id: 'associated-press',
+        name: 'Associated Press',
+      },
+      author: 'Mike Corder, Jill Lawless',
+      title:
+        'Bidens among thousands paying respects to Queen Elizabeth II - The Associated Press - en Español',
+      description:
+        "LONDON (AP) — U.S. President Joe Biden paid his respects at Queen Elizabeth II's coffin on Sunday as thousands of police, hundreds of British troops and an army of officials made final preparations for the queen's state funeral — a spectacular display of nati…",
+      url: 'https://apnews.com/article/queen-elizabeth-ii-biden-king-charles-iii-entertainment-60db7257eda5dbf150d79e8be4f0f778',
+      urlToImage:
+        'https://storage.googleapis.com/afs-prod/media/e9c17c7250464a67a5658b386ef2e81d/3000.jpeg',
+      publishedAt: '2022-09-19T22:43:55Z',
+      content:
+        'LONDON (AP) U.S. President Joe Biden paid his respects at Queen Elizabeth IIs coffin on Sunday as thousands of police, hundreds of British troops and an army of officials made final preparations for … [+6809 chars]',
+    },
   ],
 };
+
+export const HomeMocks = {ListNewsMock, TopHeadlineMocks};
