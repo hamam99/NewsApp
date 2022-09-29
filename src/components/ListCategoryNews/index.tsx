@@ -1,27 +1,66 @@
-import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 
-const CATEGORIES = [
-  'business',
-  'entertainment',
-  'general',
-  'health',
-  'science',
-  'sports',
-  'technology',
+const CATEGORIES: String[] = [
+  'Business',
+  'Entertainment',
+  'General',
+  'Health',
+  'Science',
+  'Sports',
+  'Technology',
 ];
 
 export default function ListCategoryNews() {
+  const [selectedCategory, setSelectedCategory] = useState<String>('Business');
+
+  const ItemCategory = ({item}: {item: String}) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setSelectedCategory(item);
+        }}
+        style={[
+          styles.wrapperItemCategory,
+          selectedCategory === item && styles.selectedWrapperItemCategory,
+        ]}>
+        <Text style={selectedCategory === item && styles.selectedText}>
+          {item}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <Text>ListCategoryNews</Text>
+      <FlatList
+        data={CATEGORIES}
+        renderItem={({item}) => <ItemCategory item={item} />}
+        horizontal={true}
+        scrollEnabled={true}
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled={true}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    marginVertical: 16,
+  },
+  wrapperItemCategory: {
+    marginHorizontal: 4,
+    borderRadius: 16,
     height: 32,
-    width: '100%',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    borderColor: 'F0F1FA',
+  },
+  selectedWrapperItemCategory: {
+    backgroundColor: '#FF8086',
+  },
+  selectedText: {
+    color: 'white',
   },
 });
