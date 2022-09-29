@@ -1,7 +1,8 @@
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
+import {CATEGORY} from '../../types/Category';
 
-const CATEGORIES: String[] = [
+const CATEGORIES: CATEGORY[] = [
   'Business',
   'Entertainment',
   'General',
@@ -14,7 +15,7 @@ const CATEGORIES: String[] = [
 export default function ListCategoryNews() {
   const [selectedCategory, setSelectedCategory] = useState<String>('Business');
 
-  const ItemCategory = ({item}: {item: String}) => {
+  const ItemCategory = ({item}: {item: CATEGORY}) => {
     return (
       <TouchableOpacity
         onPress={() => {
