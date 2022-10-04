@@ -1,6 +1,6 @@
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
-import {CATEGORY} from '../../types/Category';
+import {CATEGORY} from '../../../types/Category';
 
 const CATEGORIES: CATEGORY[] = [
   'Business',
