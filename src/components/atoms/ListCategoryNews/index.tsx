@@ -49,6 +49,7 @@ export default function ListCategoryNews() {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 16,
+    marginLeft: 8,
   },
   wrapperItemCategory: {
     marginHorizontal: 4,
