@@ -11,14 +11,18 @@ import {Article} from '../../../types/ResponseNews';
 import {HomeMocks} from '../../../mocks/HomeMocks';
 import FastImage from 'react-native-fast-image';
 import moment from 'moment';
+import {useNavigation} from '@react-navigation/native';
 
 export default function ListNews({
   news = HomeMocks.ListNewsMock.articles,
 }: {
   news: Article[];
 }) {
+  const navigation = useNavigation();
   const gotoDetailNews = (detailNews: Article) => {
-    ToastAndroid.show(detailNews.title, ToastAndroid.SHORT);
+    navigation.navigate('DetailNews', {
+      news: detailNews,
+    });
   };
 
   const ItemNews = ({item}: {item: Article}) => {

@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import {Text} from '@rneui/themed';
 import React from 'react';
 import {View, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
@@ -5,19 +6,18 @@ import FastImage from 'react-native-fast-image';
 import {HomeMocks} from '../../mocks/HomeMocks';
 import {Article} from '../../types/ResponseNews';
 
-const TopHeadline = ({
-  listNews = [],
-  onPressNews = () => {},
-}: {
-  listNews: Article[];
-  onPressNews: (news: Article) => void;
-}) => {
+const TopHeadline = ({listNews = []}: {listNews: Article[]}) => {
+  const navigation = useNavigation();
+
   const ItemSlider = ({item}: {item: Article}) => {
     return (
       <TouchableOpacity
         style={styles.wrapperItemSlider}
         onPress={() => {
-          onPressNews(item);
+          // onPressNews(item);
+          navigation.navigate('DetailNews', {
+            news: item,
+          });
         }}>
         <FastImage
           style={styles.imageItemSlider}
