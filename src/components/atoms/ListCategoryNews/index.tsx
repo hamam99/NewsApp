@@ -53,10 +53,12 @@ const styles = StyleSheet.create({
     height: 32,
     justifyContent: 'center',
     paddingHorizontal: 16,
-    borderColor: 'F0F1FA',
+    borderColor: '#F0F1FA',
+    borderWidth: 1,
   },
   selectedWrapperItemCategory: {
     backgroundColor: '#FF8086',
+    borderColor: '#FFB3B6',
   },
   selectedText: {
     color: 'white',
