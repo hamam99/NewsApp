@@ -11,23 +11,32 @@ import WebView from 'react-native-webview';
 import {Icon} from '@rneui/themed';
 
 import {Article} from '../../types/ResponseNews';
+import {BackButton, FavoriteButton, LineProgressBar} from '../../components';
 
-const DetailNews = ({navigation, route}) => {
+type Props = {
+  navigation: any;
+  route: any;
+};
+
+const DetailNews = ({navigation, route}: Props) => {
   const news: Article = route.params?.news ?? {};
   console.log('news', news);
 
-  const {width} = useWindowDimensions();
   const [progress, setProgress] = useState(0);
+
+  const [isFavorite, setIsFavorite] = useState<Boolean>(false);
 
   const handleBackButton = () => {
     navigation.goBack();
   };
 
+  const handleFavoriteButton = () => {
+    //save to db
+  };
+
   return (
     <View style={styles.container}>
-      {progress < 1 && (
-        <View style={[styles.progressBar, {width: progress * width}]} />
-      )}
+      {progress < 1 && <LineProgressBar progress={progress} />}
       <WebView
         source={{uri: news?.url}}
         style={styles.container}
@@ -36,9 +45,11 @@ const DetailNews = ({navigation, route}) => {
           console.log(nativeEvent.progress * 100);
         }}
       />
-      <TouchableOpacity style={styles.backButton} onPress={handleBackButton}>
-        <Icon type="ionicon" name="chevron-back" color="white" />
-      </TouchableOpacity>
+      <BackButton onPress={handleBackButton} />
+      <FavoriteButton
+        isFavorite={isFavorite}
+        onPress={() => handleFavoriteButton()}
+      />
     </View>
   );
 };
@@ -50,20 +61,6 @@ const styles = StyleSheet.create({
   progressBar: {
     backgroundColor: 'red',
     height: 2,
-  },
-  backButton: {
-    width: 32,
-    height: 32,
-    backgroundColor: 'red',
-    borderColor: 'red',
-    borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    position: 'absolute',
-    top: 8,
-    left: 16,
-    zIndex: 9999,
   },
 });
 
