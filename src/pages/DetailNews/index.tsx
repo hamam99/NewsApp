@@ -1,14 +1,8 @@
 // import {Button} from '@rneui/base';
 
 import React, {useState} from 'react';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import WebView from 'react-native-webview';
-import {Icon} from '@rneui/themed';
 
 import {Article} from '../../types/ResponseNews';
 import {BackButton, FavoriteButton, LineProgressBar} from '../../components';
