@@ -6,7 +6,7 @@ const SearchBar = () => {
   return (
     <Input
       placeholder="Dogecoin to the moon"
-      // rightIcon={{type: 'font-awesome', name: 'chevron-left'}}
+      rightIcon={{type: 'entypo', name: 'magnifying-glass'}}
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainer}
       containerStyle={styles.container}
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 32,
     borderColor: '#F0F1FA',
+    paddingRight: 8,
   },
   container: {
     marginTop: 16,
