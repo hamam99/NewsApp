@@ -25,12 +25,7 @@ const MainApp = () => {
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
       <Tab.Screen
         name="Favorite"
-        component={Home}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Home}
+        component={Favorites}
         options={{headerShown: false}}
       />
     </Tab.Navigator>
