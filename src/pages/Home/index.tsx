@@ -1,12 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 
-import {
-  ListCategoryNews,
-  ListNews,
-  SearchBar,
-  TopHeadline,
-} from '../../components';
+import {ListNewsWithCategory, SearchBar, TopHeadline} from '../../components';
 import {HomeMocks} from '../../mocks/HomeMocks';
 import {Article} from '../../types/ResponseNews';
 
@@ -22,8 +17,7 @@ const Home = () => {
         listNews={HomeMocks.TopHeadlineMocks.articles}
         onPressNews={news => onPresTopHeadlineNews(news)}
       />
-      <ListCategoryNews />
-      <ListNews />
+      <ListNewsWithCategory />
     </View>
   );
 };
