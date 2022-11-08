@@ -17,7 +17,7 @@ const FavoriteButton = ({
 }) => {
   return (
     <TouchableOpacity style={style.button(isFavorite)} onPress={onPress}>
-      <Icon name="favorite-border" color={isFavorite ? '#FF8086' : 'white'} />
+      <Icon name="favorite-border" color={isFavorite ? 'white' : '#FF8086'} />
     </TouchableOpacity>
   );
 };
@@ -26,7 +26,7 @@ const style = StyleSheet.create({
   button: (isFavorite: Boolean) => ({
     width: 56,
     height: 56,
-    backgroundColor: isFavorite ? 'white' : '#FF8086',
+    backgroundColor: isFavorite ? '#FF8086' : 'white',
     borderColor: '#FF8086',
     borderWidth: 1,
     borderRadius: 28,
