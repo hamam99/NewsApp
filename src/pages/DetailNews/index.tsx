@@ -1,11 +1,13 @@
 // import {Button} from '@rneui/base';
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import WebView from 'react-native-webview';
+import Toast from 'react-native-toast-message';
 
 import {Article} from '../../types/ResponseNews';
 import {BackButton, FavoriteButton, LineProgressBar} from '../../components';
+import {FavoriteNewsHelper} from '../../utils';
 
 type Props = {
   navigation: any;
@@ -14,18 +16,33 @@ type Props = {
 
 const DetailNews = ({navigation, route}: Props) => {
   const news: Article = route.params?.news ?? {};
-  console.log('news', news);
 
   const [progress, setProgress] = useState(0);
 
-  const [isFavorite, setIsFavorite] = useState<Boolean>(false);
+  const [isFavorite, setIsFavorite] = useState<Boolean>(
+    FavoriteNewsHelper.isSaved(news),
+  );
 
   const handleBackButton = () => {
     navigation.goBack();
   };
 
   const handleFavoriteButton = () => {
-    //save to db
+    if (!isFavorite) {
+      FavoriteNewsHelper.save(news);
+      showToast('News is saved');
+    } else {
+      FavoriteNewsHelper.remove(news);
+      showToast('News is removed');
+    }
+    setIsFavorite(prevFavorite => !prevFavorite);
+  };
+
+  const showToast = (message: string) => {
+    Toast.show({
+      type: 'success',
+      text1: message,
+    });
   };
 
   return (
