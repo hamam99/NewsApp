@@ -57,6 +57,18 @@ export default function ListNews({
     );
   };
 
+  const EmptyFavorites = () => {
+    return (
+      <Text
+        style={{
+          textAlign: 'center',
+          fontSize: 20,
+        }}>
+        There is favorite news
+      </Text>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -65,6 +77,7 @@ export default function ListNews({
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
         pagingEnabled={true}
+        ListEmptyComponent={<EmptyFavorites />}
       />
     </View>
   );
