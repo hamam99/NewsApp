@@ -10,9 +10,15 @@
 
 import React from 'react';
 import AppNavigation from './src/navigation';
+import Toast from 'react-native-toast-message';
 
 const App = () => {
-  return <AppNavigation />;
+  return (
+    <>
+      <AppNavigation />
+      <Toast />
+    </>
+  );
 };
 
 export default App;
