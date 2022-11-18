@@ -1,23 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 
-import {ListNewsWithCategory, SearchBar, TopHeadline} from '../../components';
-import {HomeMocks} from '../../mocks/HomeMocks';
-import {Article} from '../../types/ResponseNews';
+import {ListNewsWithCategory, TopHeadline} from '../../components';
+import {CATEGORY} from '../../types/Category';
 
 const Home = () => {
-  const onPresTopHeadlineNews = (news: Article) => {
-    console.log(news);
+  const [selectedCategory, setSelectedCategory] =
+    useState<CATEGORY>('Business');
+
+  const handleSelectedCategory = (category: CATEGORY) => {
+    setSelectedCategory(category);
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
-      <SearchBar />
-      <TopHeadline
-        listNews={HomeMocks.TopHeadlineMocks.articles}
-        onPressNews={news => onPresTopHeadlineNews(news)}
-      />
-      <ListNewsWithCategory />
+    <View style={{flex: 1, backgroundColor: '#FFFFFF', paddingTop: 16}}>
+      <TopHeadline selectedCategory={selectedCategory} />
+      <ListNewsWithCategory selectedCategory={handleSelectedCategory} />
     </View>
   );
 };
