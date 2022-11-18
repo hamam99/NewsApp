@@ -6,14 +6,14 @@ import {CATEGORY} from '../types/Category';
 const defaultParam = {
   country: 'us',
   apiKey: env.key,
-  pageSize: 5,
 };
 
-const getTopHeadline = (category: CATEGORY = 'Business') => {
+const getTopHeadline = (category: CATEGORY = null, pageSize: number = 5) => {
   return axiosClient.get(ListUrl.topHeadline, {
     params: {
       ...defaultParam,
       category,
+      pageSize,
     },
   });
 };
