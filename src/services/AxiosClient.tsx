@@ -13,7 +13,11 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.response.use(
   function (response) {
-    console.log('Call API success', {data: response?.data});
+    // console.log('Call API success', {data: response?.data});
+    console.log('Call API success', {
+      data: response?.data,
+      config: response?.config,
+    });
     return response;
   },
   function (error) {
