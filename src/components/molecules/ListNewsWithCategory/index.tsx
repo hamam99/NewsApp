@@ -4,12 +4,13 @@ import {ListCategoryNews, ListNews} from '../../atoms';
 import {HomeMocks} from '../../../mocks/HomeMocks';
 import {CATEGORY} from '../../../types/Category';
 
-const ListNewsWithCategory = () => {
-  const [selectedCategory, setSelectedCategory] =
-    useState<CATEGORY>('Business');
+type params = {
+  selectedCategory: (a: CATEGORY) => void;
+};
 
+const ListNewsWithCategory = ({selectedCategory = () => {}}: params) => {
   const handleSelectCategory = (category: CATEGORY) => {
-    setSelectedCategory(category);
+    selectedCategory(category);
   };
 
   return (
