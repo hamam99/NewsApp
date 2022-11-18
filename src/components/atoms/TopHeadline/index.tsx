@@ -1,13 +1,34 @@
 import {useNavigation} from '@react-navigation/native';
 import {Text} from '@rneui/themed';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {HomeMocks} from '../../mocks/HomeMocks';
-import {Article} from '../../types/ResponseNews';
+import {useQuery} from 'react-query';
+import {getTopHeadline} from '../../../services';
+import {CATEGORY} from '../../../types/Category';
+import {Article} from '../../../types/ResponseNews';
 
-const TopHeadline = ({listNews = []}: {listNews: Article[]}) => {
+const TopHeadline = ({
+  selectedCategory = 'Business',
+}: {
+  selectedCategory: CATEGORY;
+}) => {
   const navigation = useNavigation();
+
+  const callApiTopHeadline = async () => {
+    const {data} = await getTopHeadline(selectedCategory);
+    return data;
+  };
+
+  const {data: {articles: listNews = []} = {}, refetch} = useQuery(
+    'topHeadline',
+    callApiTopHeadline,
+  );
+
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCategory]);
 
   const ItemSlider = ({item}: {item: Article}) => {
     return (
@@ -52,11 +73,14 @@ const TopHeadline = ({listNews = []}: {listNews: Article[]}) => {
     );
   };
 
+  const Empty = () => {
+    return <Text>Loading the latest news...</Text>;
+  };
   return (
     <View style={styles.container}>
       <View style={styles.latestNewsContainer}>
         <Text style={styles.title}>Latest News</Text>
-        <Text style={styles.seeAllText}>See All</Text>
+        {/* <Text style={styles.seeAllText}>See All</Text> */}
       </View>
 
       <FlatList
@@ -67,6 +91,7 @@ const TopHeadline = ({listNews = []}: {listNews: Article[]}) => {
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
         pagingEnabled={true}
+        ListEmptyComponent={<Empty />}
       />
     </View>
   );
