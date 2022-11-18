@@ -60,7 +60,7 @@ export default function ListNews({
     );
   };
 
-  const EmptyFavorites = () => {
+  const Empty = () => {
     return (
       <Text
         style={{
@@ -82,7 +82,7 @@ export default function ListNews({
         scrollEnabled={true}
         showsHorizontalScrollIndicator={false}
         pagingEnabled={true}
-        ListEmptyComponent={<EmptyFavorites />}
+        ListEmptyComponent={<Empty />}
       />
     </View>
   );
