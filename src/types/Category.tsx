@@ -5,4 +5,5 @@ export type CATEGORY =
   | 'Health'
   | 'Science'
   | 'Sports'
-  | 'Technology';
+  | 'Technology'
+  | null;
