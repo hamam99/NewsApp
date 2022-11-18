@@ -17,8 +17,7 @@ const Favorites = () => {
 
   return (
     <View style={styles.container}>
-      {/* <ListNews news={HomeMocks.ListNewsMock.articles} /> */}
-      <ListNews news={listFavoriteNews} />
+      <ListNews news={listFavoriteNews} isFavoriteTabSelected={true} />
     </View>
   );
 };

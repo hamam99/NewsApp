@@ -15,10 +15,13 @@ import {useNavigation} from '@react-navigation/native';
 
 export default function ListNews({
   news = HomeMocks.ListNewsMock.articles,
+  isFavoriteTabSelected = false,
 }: {
   news: Article[];
+  isFavoriteTabSelected: Boolean;
 }) {
   const navigation = useNavigation();
+
   const gotoDetailNews = (detailNews: Article) => {
     navigation.navigate('DetailNews', {
       news: detailNews,
@@ -64,7 +67,9 @@ export default function ListNews({
           textAlign: 'center',
           fontSize: 20,
         }}>
-        There is favorite news
+        {isFavoriteTabSelected
+          ? 'There is no favorites news'
+          : 'There is no news'}
       </Text>
     );
   };
