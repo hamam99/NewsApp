@@ -2,8 +2,7 @@ import {View} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {ListCategoryNews, ListNews} from '../../atoms';
 import {CATEGORY} from '../../../types/Category';
-import {getTopHeadline} from '../../../services';
-import {useQuery} from 'react-query';
+import {useGetTopHeadline} from '../../../hooks';
 
 const ListNewsWithCategory = () => {
   const [selectedCategory, setSelectedCategory] =
@@ -13,14 +12,9 @@ const ListNewsWithCategory = () => {
     setSelectedCategory(category);
   };
 
-  const callApiTopHeadline = async () => {
-    const {data} = await getTopHeadline(selectedCategory, 20);
-    return data;
-  };
-
-  const {data: {articles: listNews = []} = {}, refetch} = useQuery(
-    'newsByCategory',
-    callApiTopHeadline,
+  const {data: {articles: listNews = []} = {}, refetch} = useGetTopHeadline(
+    selectedCategory,
+    20,
   );
 
   useEffect(() => {

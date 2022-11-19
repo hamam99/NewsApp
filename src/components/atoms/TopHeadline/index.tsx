@@ -3,22 +3,14 @@ import {Text} from '@rneui/themed';
 import React from 'react';
 import {View, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {useQuery} from 'react-query';
-import {getTopHeadline} from '../../../services';
+import {useGetTopHeadlineWithoutCategory} from '../../../hooks';
 import {Article} from '../../../types/ResponseNews';
 
 const TopHeadline = () => {
   const navigation = useNavigation();
 
-  const callApiTopHeadline = async () => {
-    const {data} = await getTopHeadline();
-    return data;
-  };
-
-  const {data: {articles: listNews = []} = {}} = useQuery(
-    'topHeadline',
-    callApiTopHeadline,
-  );
+  const {data: {articles: listNews = []} = {}} =
+    useGetTopHeadlineWithoutCategory();
 
   const ItemSlider = ({item}: {item: Article}) => {
     return (
