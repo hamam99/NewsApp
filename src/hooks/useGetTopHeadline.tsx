@@ -1,4 +1,5 @@
 import {useQuery} from 'react-query';
+import {showToast} from '../components';
 import {getTopHeadline} from '../services';
 import {CATEGORY} from '../types/Category';
 
@@ -20,7 +21,10 @@ const useGetTopHeadline = (
 };
 
 const useGetTopHeadlineWithoutCategory = () => {
-  return useQuery('newsByWithoutCategory', () => callApiTopHeadline(null, 5));
+  return useQuery('newsByWithoutCategory', () => callApiTopHeadline(null, 5), {
+    // useErrorBoundary: true, // catch runtime error
+    // onError: error => showToast(error?.message), // use on error callback
+  });
 };
 
 export {useGetTopHeadline, useGetTopHeadlineWithoutCategory};

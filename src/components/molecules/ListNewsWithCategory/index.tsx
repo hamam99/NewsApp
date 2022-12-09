@@ -1,6 +1,6 @@
 import {View} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {ListCategoryNews, ListNews} from '../../atoms';
+import {ListCategoryNews, ListNews, showToast} from '../../atoms';
 import {CATEGORY} from '../../../types/Category';
 import {useGetTopHeadline} from '../../../hooks';
 
@@ -12,15 +12,23 @@ const ListNewsWithCategory = () => {
     setSelectedCategory(category);
   };
 
-  const {data: {articles: listNews = []} = {}, refetch} = useGetTopHeadline(
-    selectedCategory,
-    20,
-  );
+  const {
+    data: {articles: listNews = []} = {},
+    refetch,
+    // error,
+    // isError,
+  } = useGetTopHeadline(selectedCategory, 20);
 
   useEffect(() => {
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory]);
+
+  // useEffect(() => {
+  //   if (isError) {
+  //     showToast(error?.message);
+  //   }
+  // }, [isError, error]);
 
   return (
     <View style={{flex: 1}}>
