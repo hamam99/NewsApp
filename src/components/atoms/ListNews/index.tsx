@@ -1,20 +1,12 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ToastAndroid,
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {Article} from '../../../types/ResponseNews';
-import {HomeMocks} from '../../../mocks/HomeMocks';
 import FastImage from 'react-native-fast-image';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
 
 export default function ListNews({
-  news = HomeMocks.ListNewsMock.articles,
+  news = [],
   isFavoriteTabSelected = false,
 }: {
   news: Article[];
